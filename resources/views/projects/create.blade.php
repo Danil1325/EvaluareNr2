@@ -3,7 +3,7 @@
 @section('title', 'Create')
 
 @section('content')
-<form action="{{ route('store') }}" method="post">
+<form action="{{ route('projects.store') }}" method="post">
     @csrf
     <div class="mb-3">
         <label for="name" class="form-label"></label>
