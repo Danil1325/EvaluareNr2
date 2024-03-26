@@ -2,40 +2,39 @@
 
 @section('title', 'Page Title')
 
-
-
 @section('content')
 <a href="{{ route('create') }}" class="btn btn-primary">Add Project</a>
-
-    <table class="table table-bordered mt-3">
-        <thead>
+<div class="container text-center mt-3">
+    <div class="row row-cols-4">
+        @forelse($projects as $project)  
+            
+            <div class="col">
+                <div class="card shadow" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{$project->name}}</h5>
+                        <p class="card-text">{{$project->description}}</p>
+                        <div href="#" class="card-link flex">
+                            <div class="div">
+                                <i class="fa-regular fa-calendar" style="color: #74C0FC;"></i>
+                                {{$project->created}}
+                            </div>
+                            <h6 class="card-subtitle mb-2 text-body-secondary">
+                                {{ $project->status->name}}
+                            </h6>
+                        </div>
+                        <a href="#" class="card-link">Another link</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div>
+                </div>
+            </div>               
+        @empty
             <tr>
-                <th>#</th>
-                <th>Nume</th>
-                <th>Description</th>
-                <th>Status</th>
-                <th>Created</th>
-                <th>Options</th>
+                <td collspan="6">
+                    No data
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @forelse($projects as $project)
-                <tr>
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{$project->name}}</td>
-                    <td>{{$project->description}}</td>
-                    <td>{{ $project->status->name}}</td>
-                    <td>{{ $project->created }}</td>
-                    
-                </tr>
-            @empty
-                <tr>
-                    <td collspan="6">
-                        No data
-                    </td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
-  
-@stop
+        @endforelse
+    </div>
+            
+</div>
+@endsection
